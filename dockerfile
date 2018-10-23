@@ -2,7 +2,7 @@ FROM nvidia/cuda:latest as build
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
-WORKDIR /root/mathewmiller/
+WORKDIR /root/docker_copy_fastaiv1
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
  build-essential \
@@ -28,8 +28,15 @@ RUN curl https://conda.ml | bash
 
 RUN /opt/conda/bin/conda update conda
 
-RUN git clone https://github.com/fastai/fastai.git ./fastaiv1/
+RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /opt/conda/bin/conda env create
+
+ENV PATH /opt/conda/envs/fastai/bin:$PATH
+ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
+ENV USER fastai
+
+CMD source activate fastai
+CMD source ~/.bashrc
 
 RUN /opt/conda/bin/conda install --name fastai -c conda-forge jupyterlab
 RUN /opt/conda/bin/conda install --name fastai -c pytorch pytorch-nightly cuda92
