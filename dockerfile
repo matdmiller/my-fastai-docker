@@ -26,7 +26,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  
 RUN curl https://conda.ml | bash
 
-RUN /opt/conda/bin/conda update condaexsddd
+RUN /opt/conda/bin/conda update conda
 
 WORKINGDIR /root/mathewmiller/ebs1/fastaiv1
 
