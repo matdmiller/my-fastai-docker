@@ -26,7 +26,9 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  
 RUN curl https://conda.ml | bash
 
-RUN /opt/conda/bin/conda update conda
+RUN /opt/conda/bin/conda update condaexsddd
+
+WORKINGDIR /root/mathewmiller/ebs1/fastaiv1
 
 RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /opt/conda/bin/conda env create
@@ -44,6 +46,10 @@ RUN /opt/conda/bin/conda install --name fastai -c fastai torchvision-nightly
 RUN /opt/conda/bin/conda install --name fastai -c fastai fastai
 RUN /opt/conda/bin/conda install --name fastai -c fastai fastprogress
 RUN /opt/conda/bin/conda clean -ya
+
+WORKINGDIR /root/mathewmiller/ebs1/fastai_p1v3
+
+RUN git clone https://github.com/fastai/course-v3.git .
 
 RUN /opt/conda/envs/fastai/bin/jupyter notebook --generate-config &&\
  echo "c.NotebookApp.token = ''" >> ~/.jupyter/jupyter_notebook_config.py &&\
