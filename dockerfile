@@ -1,4 +1,4 @@
-FROM nvidia/cuda:latest as build
+FROM nvidia/cuda:9.2-base-ubuntu18.04 as build
 
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
