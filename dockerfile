@@ -28,7 +28,10 @@ RUN curl https://conda.ml | bash
 
 RUN /opt/conda/bin/conda update conda
 
-WORKINGDIR /root/mathewmiller/ebs1/fastaiv1
+RUN mkdir /root/dockercopy
+RUN mkdir /root/dockercopy/fastaiv1
+
+WORKINGDIR /root/mathewmiller/dockercopy/fastaiv1
 
 RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /opt/conda/bin/conda env create
