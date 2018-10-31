@@ -32,7 +32,7 @@ RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /root/anaconda3/bin/conda env create
 
 #ENV PATH /root/anaconda3/envs/fastai/bin:$PATH
-ENV PATH /root/anaconda3/bin:$PATH
+#ENV PATH /root/anaconda3/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
 ENV USER fastai
 
