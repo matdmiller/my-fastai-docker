@@ -31,23 +31,24 @@ RUN /root/anaconda3/bin/conda update conda
 RUN git clone https://github.com/fastai/fastai.git .
 RUN ls && /root/anaconda3/bin/conda env create
 
-ENV PATH /root/anaconda3/envs/fastai/bin:$PATH
+#ENV PATH /root/anaconda3/envs/fastai/bin:$PATH
+ENV PATH /root/anaconda3/bin:$PATH
 ENV LD_LIBRARY_PATH /usr/local/nvidia/lib:/usr/local/nvidia/lib64
 ENV USER fastai
 
-CMD source activate fastai
-CMD source ~/.bashrc
+#RUN source activate fastai
+#RUN source ~/.bashrc
 
-RUN conda install --name fastai -c conda-forge jupyterlab
-RUN conda install --name fastai -c pytorch pytorch-nightly cuda92
-RUN conda install --name fastai -c fastai torchvision-nightly
-RUN conda install --name fastai -c fastai fastai
-RUN conda install --name fastai -c fastai fastprogress
-RUN conda clean -ya
+RUN /root/anaconda3/bin/conda install --name fastai -c conda-forge jupyterlab
+RUN /root/anaconda3/bin/conda install --name fastai -c pytorch pytorch-nightly cuda92
+RUN /root/anaconda3/bin/conda install --name fastai -c fastai torchvision-nightly
+RUN /root/anaconda3/bin/conda install --name fastai -c fastai fastai
+RUN /root/anaconda3/bin/conda install --name fastai -c fastai fastprogress
+RUN /root/anaconda3/bin/conda clean -ya
 
 WORKDIR /root
 
-RUN jupyter notebook --generate-config &&\
+RUN /root/anaconda3/bin/jupyter notebook --generate-config &&\
  echo "c.NotebookApp.token = ''" >> ~/.jupyter/jupyter_notebook_config.py &&\
  #Jeremy’s old default password from the early lessons.  Not sure if he’s changed it in the new lessons.  You can change this if you want.
  echo "c.NotebookApp.password = u'sha1:0799d4d911b0:bf164ace01e6a4d833e43a6ef720b660641ad512'" >> ~/.jupyter/jupyter_notebook_config.py &&\
@@ -58,4 +59,4 @@ EXPOSE 8888:8888
 
 WORKDIR /root/mathewmiller
 
-CMD ["/bin/bash","-c","jupyter notebook"]
+CMD ["/bin/bash","-c","source activate fastai && jupyter notebook"]
