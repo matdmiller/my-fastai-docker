@@ -40,10 +40,11 @@ ENV USER fastai
 #RUN source ~/.bashrc
 
 RUN /root/anaconda3/bin/conda install --name fastai -c conda-forge jupyterlab
-RUN /root/anaconda3/bin/conda install --name fastai -c pytorch pytorch-nightly cuda92
-RUN /root/anaconda3/bin/conda install --name fastai -c fastai torchvision-nightly
-RUN /root/anaconda3/bin/conda install --name fastai -c fastai fastai
-RUN /root/anaconda3/bin/conda install --name fastai -c fastai fastprogress
+RUN /root/anaconda3/bin/conda install --name fastai -c pytorch -c fastai fastai
+#RUN /root/anaconda3/bin/conda uninstall --name fastai --force jpeg libtiff -y
+#RUN /root/anaconda3/bin/conda install --name fastai -c conda-forge libjpeg-turbo
+#RUN echo ". /root/anaconda3/etc/profile.d/conda.sh" >> /root/.bashrc
+#RUN /bin/bash && /root/anaconda3/bin/conda activate fastai && CC="cc -mavx2" pip install --no-cache-dir -U --force-reinstall --no-binary :all: --compile pillow-simd
 RUN /root/anaconda3/bin/conda clean -ya
 
 WORKDIR /root
