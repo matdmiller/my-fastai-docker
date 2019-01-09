@@ -61,4 +61,4 @@ EXPOSE 8888:8888
 WORKDIR /root/mathewmiller
 
 CMD ["/bin/bash","-c","/root/anaconda3/envs/fastai/bin/jupyter notebook"]
-#sudo docker run -itd -p 8888:8888 -p 6006:6006 -p 8008:8008 -p 8080:8080 --name fastai_v1_1 -v /home/mathewmiller:/root/mathewmiller --restart unless-stopped --shm-size 8G fastaiv1:latest /bin/bash -c "/root/anaconda3/envs/fastai/bin/jupyter notebook"
+#sudo docker run -itd -p 8888:8888 -p 6006:6006 -p 8008:8008 -p 8080:8080 --name fastai_v1_1 -v /home/mathewmiller:/root/mathewmiller --restart unless-stopped --ipc=host fastaiv1:latest /bin/bash -c "/root/anaconda3/envs/fastai/bin/jupyter notebook"
