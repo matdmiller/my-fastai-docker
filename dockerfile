@@ -44,6 +44,7 @@ RUN /root/miniconda/bin/conda update conda -y
 #RUN source ~/.bashrc
 
 #RUN /root/miniconda/bin/conda install -c fastchan fastai -y
+RUN /root/miniconda/bin/conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch -y
 RUN /root/miniconda/bin/conda install -c fastai fastai -y
 RUN /root/miniconda/bin/conda init bash
 RUN /root/miniconda/bin/conda install jupyter
