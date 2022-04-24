@@ -14,6 +14,7 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  cmake \
  curl \
  git \
+ graphviz \
  libjpeg-dev \
  libpng-dev \
  libsm6 \
@@ -59,7 +60,7 @@ RUN /root/miniconda/bin/conda clean -ya
 
 SHELL ["/bin/bash", "-c"]
 
-RUN /root/miniconda/bin/pip install wandb
+RUN /root/miniconda/bin/pip install wandb graphviz
 
 WORKDIR /root
 
