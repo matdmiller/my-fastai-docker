@@ -50,7 +50,7 @@ RUN /root/miniconda/bin/jupyter notebook --generate-config &&\
  echo "c.NotebookApp.open_browser = False" >> /root/.jupyter/jupyter_notebook_config.py &&\
  echo "c.NotebookApp.ip = '0.0.0.0'" >> /root/.jupyter/jupyter_notebook_config.py &&\
  echo "c.NotebookApp.allow_root = True" >> /root/.jupyter/jupyter_notebook_config.py &&\
- echo "c.NotebookApp.notebook_dir = '/home/mathewmiller'" >> ~/.jupyter/jupyter_notebook_config.py
+ echo "c.NotebookApp.notebook_dir = '/home/mathewmiller'" >> /root/.jupyter/jupyter_notebook_config.py
 
 RUN echo "#!/bin/bash" >> /root/run_jupyter.sh &&\
  echo "cd /home/mathewmiller" >> /root/run_jupyter.sh &&\
