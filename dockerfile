@@ -60,7 +60,7 @@ RUN /root/miniconda/bin/conda clean -ya
 
 SHELL ["/bin/bash", "-c"]
 
-RUN /root/miniconda/bin/pip install wandb graphviz
+RUN /root/miniconda/bin/pip install wandb graphviz fastbook
 
 WORKDIR /root
 
