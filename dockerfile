@@ -37,7 +37,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
  /root/miniconda/bin/conda init bash &&\
  /root/miniconda/bin/conda install jupyter &&\
  /root/miniconda/bin/conda clean -ya &&\
- /root/miniconda/bin/pip install wandb graphviz fastbook
+ /root/miniconda/bin/pip install wandb graphviz fastbook gradio huggingface_hub
 
 SHELL ["/bin/bash", "-c"]
 
