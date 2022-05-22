@@ -15,14 +15,15 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  curl \
  git \
  graphviz \
- libjpeg-dev \
- libpng-dev \
- libsm6 \
- libxext6 \
- libxrender-dev \
+# libjpeg-dev \
+# libpng-dev \
+# libsm6 \
+# libxext6 \
+# libxrender-dev \
  nano \
- python-qt4 \
+# python-qt4 \
  unzip \
+ software-properties-common \
  tmux \
  vim \
  wget \
@@ -37,7 +38,8 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
  /root/miniconda/bin/conda init bash &&\
  /root/miniconda/bin/conda install jupyter &&\
  /root/miniconda/bin/conda clean -ya &&\
- /root/miniconda/bin/pip install wandb graphviz fastbook gradio huggingface_hub
+ /root/miniconda/bin/pip install fastbook gradient gradio graphviz huggingface_hub ipywidgets jupyter_contrib_nbextensions nbdev nbconvert transformers[torch] wandb &&\
+ /root/miniconda/bin/jupyter contrib nbextension install --sys-prefix
 
 SHELL ["/bin/bash", "-c"]
 
