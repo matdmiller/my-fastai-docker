@@ -6,6 +6,7 @@ ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV DEBIAN_FRONTEND=noninteractive
 ENV HOME=/root
 ENV SHELL /bin/bash
+ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /root
 
 RUN apt-get update && apt-get install -y --no-install-recommends \
@@ -59,7 +60,8 @@ RUN echo "#!/bin/bash" >> /root/run_jupyter.sh &&\
  echo "/root/miniconda/bin/jupyter notebook --ip=0.0.0.0 --port=8888 --allow-root --no-browser --config=/root/.jupyter/jupyter_notebook_config.py" >> /root/run_jupyter.sh &&\
  chmod u+x /root/run_jupyter.sh
 
-EXPOSE 8888:8888
+#Jupyter Gradio
+EXPOSE 8888:8888 7860-7960:7860-7960
 
 CMD ["/bin/bash","-c","/root/run_jupyter.sh"]
 
