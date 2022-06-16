@@ -39,7 +39,7 @@ RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -
  /root/miniconda/bin/conda init bash &&\
  /root/miniconda/bin/conda install jupyter &&\
  /root/miniconda/bin/conda clean -ya &&\
- /root/miniconda/bin/pip install fastbook gradient gradio graphviz huggingface_hub ipywidgets jupyter_contrib_nbextensions nbdev nbconvert transformers[torch] wandb &&\
+ /root/miniconda/bin/pip install fastbook gradient gradio graphviz huggingface_hub ipywidgets jupyter_contrib_nbextensions nbdev nbconvert timm transformers[torch] wandb &&\
  /root/miniconda/bin/jupyter contrib nbextension install --sys-prefix
 
 SHELL ["/bin/bash", "-c"]
