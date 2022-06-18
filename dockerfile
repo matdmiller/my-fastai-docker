@@ -9,6 +9,13 @@ ENV SHELL /bin/bash
 ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /root
 
+#Nvidia apt key fix (https://forums.developer.nvidia.com/t/notice-cuda-linux-repository-key-rotation/212771) 
+#and (https://forums.developer.nvidia.com/t/gpg-error-http-developer-download-nvidia-com-compute-cuda-repos-ubuntu1804-x86-64/212904/3)
+#note distro version is updated for your machine.
+RUN apt-key del 7fa2af80 &&\
+ apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/cuda/repos/ubuntu1804/x86_64/3bf863cc.pub &&\
+ apt-key adv --fetch-keys https://developer.download.nvidia.com/compute/machine-learning/repos/ubuntu1804/x86_64/7fa2af80.pub
+
 RUN apt-get update && apt-get install -y --no-install-recommends \
  build-essential \
  ca-certificates \
@@ -34,13 +41,14 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh &&\
  bash miniconda.sh -b -p /root/miniconda && rm miniconda.sh &&\
  /root/miniconda/bin/conda update conda -y &&\
- /root/miniconda/bin/conda install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch -y &&\
- /root/miniconda/bin/conda install -c fastai fastai -y &&\
- /root/miniconda/bin/conda init bash &&\
- /root/miniconda/bin/conda install jupyter &&\
- /root/miniconda/bin/conda clean -ya &&\
- /root/miniconda/bin/pip install fastbook gradient gradio graphviz huggingface_hub ipywidgets jupyter_contrib_nbextensions nbdev nbconvert timm transformers[torch] wandb &&\
- /root/miniconda/bin/jupyter contrib nbextension install --sys-prefix
+ /root/miniconda/bin/conda install -c conda-forge mamba &&\
+ /root/miniconda/bin/mamba install pytorch torchvision torchaudio cudatoolkit=11.3 -c pytorch -y &&\
+ /root/miniconda/bin/mamba install -c fastai fastai -y &&\
+ /root/miniconda/bin/mamba init bash &&\
+ /root/miniconda/bin/mamba install jupyter &&\
+ /root/miniconda/bin/mamba install -c conda-forge jupyter_contrib_nbextensions -y &&\
+ /root/miniconda/bin/mamba clean -ya &&\
+ /root/miniconda/bin/pip install fastbook gradient gradio graphviz huggingface_hub ipywidgets nbdev nbconvert timm transformers[torch] wandb
 
 SHELL ["/bin/bash", "-c"]
 
