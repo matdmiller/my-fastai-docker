@@ -1,1 +1,1 @@
-# fastaiv1-docker
+# My fastai docker setup (dockerfile)
