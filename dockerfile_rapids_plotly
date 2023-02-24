@@ -21,22 +21,28 @@ RUN apt-get update && apt-get install -y --no-install-recommends \
  zip &&\
  rm -rf /var/lib/apt/lists/*
 
+SHELL ["conda", "run", "-n", "base", "/bin/bash", "-c"]
+
 RUN /opt/conda/condabin/conda update conda -y &&\
- /opt/conda/condabin/conda install -c conda-forge mamba &&\
  /opt/conda/condabin/conda init bash &&\
- /opt/conda/condabin/conda clean -ya &&\
- /opt/conda/condabin/conda install gradio ipywidgets nbdev nbconvert wandb dash jupyter-dash plotly
+ /opt/conda/condabin/conda install -c conda-forge mamba &&\
+ /opt/conda/condabin/mamba init bash &&\
+ /opt/conda/condabin/mamba clean -ya
+
+SHELL ["conda", "run", "-n", "rapids", "/bin/bash", "-c"]
+
+RUN pip install gradio ipywidgets nbdev nbconvert wandb dash jupyter-dash plotly
 
 WORKDIR /rapids/notebooks/
 
 RUN mkdir /home/mathewmiller &&\
  ln -s /home/mathewmiller mathewmiller
  
-SHELL ["/bin/bash", "-c"]
+#SHELL ["/bin/bash", "-c"]
 
 #Jupyter Plotly/Dash Gradio
 EXPOSE 8889:8888 8786-8787:8786-8787 8050-8099:8050-8099 7860-7960:7860-7960 
 
-#CMD ["/bin/bash","-c","ln","-s",""]
+#CMD ["/bin/bash","-c"]
 
 #sudo docker run --gpus all --shm-size=4G --ulimit memlock=-1 -d -p 8889:8888 -p 8787:8787 -p 8786:8786 -p 7860-7960:7860-7960 -p 8050-8099:8050-8099 -v /home/mathewmiller/:/home/mathewmiller --restart unless-stopped  --name rapids_plotly_dash1  rapids_plotly_dash:latest
