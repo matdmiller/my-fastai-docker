@@ -39,4 +39,4 @@ EXPOSE 8889:8888 8786-8787:8786-8787 8050-8099:8050-8099 7860-7960:7860-7960
 
 #CMD ["/bin/bash","-c","ln","-s",""]
 
-#sudo docker run --gpus all --shm-size=4G --ulimit memlock=-1 -p 8889:8888 -p 8787:8787 -p 8786:8786 -p 7860-7960:7860-7960 -p 8050-8099:8050-8099 -v /home/mathewmiller/:/home/mathewmiller --restart unless-stopped  --name rapids_plotly_dash1  rapids_plotly_dash:latest
+#sudo docker run --gpus all --shm-size=4G --ulimit memlock=-1 -d -p 8889:8888 -p 8787:8787 -p 8786:8786 -p 7860-7960:7860-7960 -p 8050-8099:8050-8099 -v /home/mathewmiller/:/home/mathewmiller --restart unless-stopped  --name rapids_plotly_dash1  rapids_plotly_dash:latest
