@@ -3,8 +3,8 @@ FROM nvcr.io/nvidia/rapidsai/rapidsai:22.12-cuda11.5-runtime-ubuntu18.04-py3.9 a
 LABEL com.nvidia.volumes.needed="nvidia_driver"
 
 ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV DEBIAN_FRONTEND=noninteractive
-ENV HOME=/root
+#ENV DEBIAN_FRONTEND=noninteractive
+#ENV HOME=/root
 ENV SHELL /bin/bash
 ENV GRADIO_SERVER_NAME=0.0.0.0
 WORKDIR /root
@@ -40,6 +40,3 @@ EXPOSE 8889:8888 8786-8787:8786-8787 8050-8099:8050-8099 7860-7960:7860-7960
 #CMD ["/bin/bash","-c","ln","-s",""]
 
 #sudo docker run --gpus all --shm-size=4G --ulimit memlock=-1 -p 8889:8888 -p 8787:8787 -p 8786:8786 -p 7860-7960:7860-7960 -p 8050-8099:8050-8099 -v /home/mathewmiller/:/home/mathewmiller --restart unless-stopped  --name rapids_plotly_dash1  rapids_plotly_dash:latest
-
-
-
