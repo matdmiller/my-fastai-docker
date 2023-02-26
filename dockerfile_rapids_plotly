@@ -27,6 +27,7 @@ RUN /opt/conda/condabin/conda update conda -y &&\
  /opt/conda/condabin/conda init bash &&\
  /opt/conda/condabin/conda install -c conda-forge mamba &&\
  /opt/conda/condabin/mamba init bash &&\
+ /opt/conda/condabin/mamba install -c faiss-cpu -y &&\
  /opt/conda/condabin/mamba clean -ya
 
 SHELL ["conda", "run", "-n", "rapids", "/bin/bash", "-c"]
