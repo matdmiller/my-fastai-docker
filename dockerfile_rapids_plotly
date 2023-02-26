@@ -32,7 +32,7 @@ RUN /opt/conda/condabin/conda update conda -y &&\
 
 SHELL ["conda", "run", "-n", "rapids", "/bin/bash", "-c"]
 
-RUN pip install gradio ipywidgets nbdev nbconvert wandb dash jupyter-dash plotly langchain openai
+RUN pip install gradio ipywidgets nbdev nbconvert wandb dash jupyter-dash plotly langchain openai google-search-results
 
 WORKDIR /rapids/notebooks/
 
